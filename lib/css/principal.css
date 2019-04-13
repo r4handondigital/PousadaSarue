@@ -1,0 +1,189 @@
+
+@font-face {
+  font-family: 'Gotham-Light';
+  src: url('Gotham-Light.eot');
+  src: url('Gotham-Light.eot?#iefix') format('embedded-opentype'),
+       url('Gotham-Light.svg#Gotham-Light') format('svg'),
+       url('Gotham-Light.ttf') format('truetype'),
+       url('Gotham-Light.woff') format('woff'),
+       url('Gotham-Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gotham-Bold';
+  src: url('Gotham-Bold.eot');
+  src: url('Gotham-Bold.eot?#iefix') format('embedded-opentype'),
+       url('Gotham-Bold.svg#Gotham-Bold') format('svg'),
+       url('Gotham-Bold.ttf') format('truetype'),
+       url('Gotham-Bold.woff') format('woff'),
+       url('Gotham-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body,a{
+	color: #010101 !important;
+}
+
+body, p, ul, ol, dl, input, textarea {
+    font-family: 'Gotham-Light';
+	
+}
+ h1, h2, h3, h4, h5, h6{
+ 	font-family: 'Gotham-Bold';
+ }
+nav .brand-logo{
+	    top: -53px;
+	    z-index: 20;
+}
+
+
+
+header{
+	background: #cbaf56;
+}
+
+header nav{
+	background: none !important;
+	box-shadow: none !important;
+}
+
+header nav a{
+	font-size: 20px;
+}
+
+header .btn{
+	color:#cbaf56 !important;
+	background:#000000;
+	font-size:25px;
+	border-radius:20px !important;
+	height:45px;
+	padding-top: 5px;
+}
+
+header .btn:hover{
+	background:#fff;
+}
+
+.col-social{
+	display: inline-flex;
+	margin-bottom: 0;
+	position: relative;
+	top: 24px;
+}
+.col-social li{
+	margin:0 10px;
+}
+
+.sessao-quem{
+	border-bottom: 12px solid #cbaf57;
+	padding: 50px 0;
+}
+
+.sessao-quem h1{
+	font-family: 'Gotham-Light';
+}
+.list-acomodacoes{
+	margin-bottom: 40px;
+}
+.list-acomodacoes .owl-item{
+	    width: auto !important;
+    display: inline-flex;
+}
+.list-acomodacoes .owl-item img{
+	width: auto !important;
+	  -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.list-acomodacoes .owl-item img:hover{
+	width: auto !important;
+	  -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.datepicker-date-display{
+	background: #010101;
+}
+.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done {
+    color: #cbaf56;
+    padding: 0 1rem;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: #cbaf57;
+}
+
+.cont-det{
+	display: table;
+	padding-bottom: 3px;
+	background: #cbaf56;
+	border-radius: 0 0 10px 10px;
+}
+.cont-det p{
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	margin:0;
+}
+.no-margin{
+	margin-bottom: 0;
+}
+
+
+footer{
+	margin-top: 90px;
+	background: #cbaf56;
+}
+footer p{
+	font-size: 20px;
+}
+
+
+@media only screen and  (min-width:1150px){
+
+	.container{
+		width: 1150px;
+	}
+
+
+
+}
+
+	
+
+}
+@media only screen and (max-width: 1149px){
+	.container {
+	    width: 99%;
+	}
+	
+}
+
+
+/* COL-MD */
+@media only screen and  (max-width:1100px) and (min-width:992px){
+
+}
+/* COL-SM */
+@media only screen and  (max-width:992px) and (min-width:767px){
+    
+}
+/* COL-XS */
+@media only screen and  (max-width:767px){
+
+	#maxmeio-id{
+		display: none !important;
+	}
+
+}
