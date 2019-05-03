@@ -255,15 +255,15 @@ Missão: Atender nossos hóspedes de forma personalizada e com qualidade buscand
     <div class="modal-content">
       <h4>FAÇA SUA RESERVA</h4>
 
-      <form>
+     <form action="" method="post">
    
 			<div class="row no-margin">
 		        <div class="input-field col s12 m6">
-		         	<input id="seunome" type="text" class="validate">
+		         	<input id="seunome" type="text" name="nome" class="validate">
 				    <label for="seunome">Nome</label>
 		        </div>
 		       <div class="input-field col s12 m6">
-		         	<input id="sobrenome" type="text" class="validate">
+		         	<input id="sobrenome" type="text" name="sobrenome" class="validate">
 				    <label for="sobrenome">Sobrenome</label>
 		        </div>
 		    </div>   					
@@ -279,22 +279,23 @@ Missão: Atender nossos hóspedes de forma personalizada e com qualidade buscand
 		     </div>
 			<div class="row no-margin">
 		        <div class="input-field col s12 m6">
-		         	<input id="email" type="email" class="validate">
+		         	<input id="email" type="email" name="email" class="validate">
           			<label for="email">Email</label>
 		        </div>
 		       <div class="input-field col s12 m6">
-		         	<input id="telefone" type="tel" class="validate">
+		         	<input id="telefone" type="tel" name="telefone" class="validate">
 				    <label for="telefone">Telefone</label>
 		        </div>
 		    </div>  
 			<div class="row no-margin">
 				<div class="input-field col s12 ">
-					<textarea id="textarea1" class="materialize-textarea"></textarea>
+					<textarea id="textarea1" name="observacao" class="materialize-textarea"></textarea>
 	          		<label for="textarea1">Observação</label>
 	          	</div>
 			</div>	
 			<div class="row no-margin">
 				<div class="input-field col s12 ">
+					<input type="hidden" name="cat" value="1">
 					<button class="btn waves-effect waves-light right grey darken-4" type="submit" name="action">Enviar</button>
 				</div>
 			</div>	
@@ -314,39 +315,40 @@ Missão: Atender nossos hóspedes de forma personalizada e com qualidade buscand
     <div class="modal-content">
       <h4>FALE CONOSCO</h4>
 
-      <form>
+      <form action="" method="post">
    
 			<div class="row no-margin">
 		        <div class="input-field col s12">
-		         	<input id="seunome" type="text" class="validate">
+		         	<input id="seunome" type="text" name="nome" class="validate">
 				    <label for="seunome">Seu Nome</label>
 		        </div>
 			</div>
 			<div class="row no-margin">
 		       <div class="input-field col s12 m6">
-		         	<input id="email" type="email" class="validate">
+		         	<input id="email" type="email" name="email" class="validate">
           			<label for="email">Email</label>
 		        </div>
 		        <div class="input-field col s12 m6">
-		         	<input id="telefone" type="tel" class="validate">
+		         	<input id="telefone" type="tel" name="telefone" class="validate">
 				    <label for="telefone">Telefone</label>
 		        </div>
 
 		    </div>   					
 			<div class="row no-margin">
 		        <div class="input-field col s12">
-		         	<input id="assunto" type="text" class="validate">
+		         	<input id="assunto" type="text" name="assunto" class="validate">
 				    <label for="assunto">Assunto</label>
 		        </div>
 		     </div>
 			<div class="row no-margin">
 				<div class="input-field col s12 ">
-					<textarea id="textarea1" class="materialize-textarea"></textarea>
+					<textarea id="textarea1" name="mensagem" class="materialize-textarea"></textarea>
 	          		<label for="textarea1">Mensagem</label>
 	          	</div>
 			</div>	
 			<div class="row no-margin">
 				<div class="input-field col s12 ">
+					<input type="hidden" name="cat" value="2">
 					<button class="btn waves-effect waves-light right grey darken-4" type="submit" name="action">Enviar</button>
 				</div>
 			</div>	
@@ -410,7 +412,225 @@ Mais informações: http://turismo.natal.rn.gov.br</p>
     </div>
   </div>
         	    	    	    
-        
+         <?php
+            require_once('/home/pousadasaruenatal/public_html/libs/phpmailer/class.phpmailer.php');
+            require_once('/home/pousadasaruenatal/public_html/libs/phpmailer/class.smtp.php');
+            sleep(1);
+
+            date_default_timezone_set("Brazil/East");
+            if(!empty($_POST)) {
+                if($_POST['cat'] == 1) {
+                    $nome = $_POST['nome'];
+                    $sobrenome = $_POST['sobrenome'];
+                    $checkin = $_POST['checkin'];
+                    $checkout = $_POST['checkout'];
+                    $email = $_POST['email'];
+                    $telefone = $_POST['telefone'];
+                    $observacao = $_POST['observacao'];
+                    if($nome == "" || $email == ""){ echo 'Algum campo ficou em branco! Por favor, preencha-o.'; exit; }
+
+                    $mailer = new PHPMailer();
+                    $mailer->IsSMTP();
+                    $mailer->SMTPSecure = 'ssl';
+                    $mailer->Port = 465;
+
+                    $mailer->Host = 'smtp.gmail.com';
+                    $mailer->SMTPAuth = true;
+                    $mailer->Username = 'noreplycamaleao@gmail.com';
+                    $mailer->Password = 'Acbnatal22';
+                    $mailer->FromName = 'Pousada Sarue';
+                    $mailer->From = 'pousadasaruenatal@hotmail.com';
+                    $mailer->AddAddress('pousadasaruenatal@hotmail.com', 'Reserva Pousada Sarue');
+                    $mailer->Subject = 'Formulario de Reserva - Pousada Sarue';
+                    $mailer->Body = '<center><table width="700" border="1" cellpadding="0" cellspacing="0" style="border: 1px #000000 solid; border-collapse: collapse;">
+                    <tr>
+                    <td style="padding: 5px;" bgcolor="#FFF" style="border: 0 !important; bordercolor: #FFF;"  width="210" align="center" ></td>
+                    <td width="480" align="center" bgcolor="#000000" style=" padding: 15px; font-family: Verdana, Geneva, sans-serif; color: #FFF; font-weight: bold;">FORMULÁRIO DE RESERVA - POUSADA SARUE</td>
+                    </tr>
+                    <tr>
+                    <td colspan="2" style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Olá,
+                    <br /><br />Esta é uma mensagem automática para notificar um contato - Pousada Sarue.
+                    <br /><br />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Nome:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$nome.'
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Sobrenome:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$sobrenome.'
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Check-in:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$checkin.'
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Check-Out:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$checkout.'
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    E-mail:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$email.'
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Telefone:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$telefone.'
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Observação:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$observacao.'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    INFO
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Enviado em '.date('d/m/Y').' - '.date("H:i:s").'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td bgcolor="#000000" colspan="2" style="padding: 10px; font-family: Arial; color: #FFF; font-weight: bold; text-align: center;">CAMALEAO</td>
+                    </tr>
+                    </table></center>';
+                    $mailer->IsHTML(true);
+
+                    if(!$mailer->Send()) {
+                        echo "Message was not sent";
+                        echo "Mailer Error: " . $mailer->ErrorInfo; exit; 
+                    } else {
+                        echo '<script> alert("Enviado com sucesso!"); history.back("-1"); </script>';
+                    }
+                } else if ($_POST['cat'] == 2) {
+                    $nome = $_POST['nome'];
+                    $telefone = $_POST['telefone'];
+                    $email = $_POST['email'];
+                    $assunto = $_POST['assunto'];
+                    $mensagem = $_POST['mensagem'];
+
+                    if($nome == "" || $email == ""){ echo 'Algum campo ficou em branco! Por favor, preencha-o.'; exit; }
+
+                    $mailer = new PHPMailer();
+                    $mailer->IsSMTP();
+                    $mailer->SMTPSecure = 'ssl';
+                    $mailer->Port = 465;
+                    $mailer->Host = 'smtp.gmail.com';
+                    $mailer->SMTPAuth = true;
+                    $mailer->Username = 'noreplycamaleao@gmail.com';
+                    $mailer->Password = 'Acbnatal22';
+                    $mailer->FromName = 'Pousada Sarue';
+                    $mailer->AddAddress('pousadasaruenatal@hotmail.com', 'Contato Pousada Sarue');
+                    $mailer->Subject = 'Fale Conosco - Pousada Saruê';
+                    $mailer->Body = '<center><table width="700" border="1" cellpadding="0" cellspacing="0" style="border: 1px #000000 solid; border-collapse: collapse;">
+                    <tr>
+                    <td style="padding: 5px;" bgcolor="#FFF" style="border: 0 !important; bordercolor: #FFF;"  width="210" align="center" ></td>
+                    <td width="480" align="center" bgcolor="#000000" style=" padding: 15px; font-family: Verdana, Geneva, sans-serif; color: #FFF; font-weight: bold;">FORMULÁRIO DE CONTATO - POUSADA SARUÊ</td>
+                    </tr>
+                    <tr>
+                    <td colspan="2" style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Olá,
+                    <br /><br />Esta é uma mensagem automática para notificar um contato - Tropical Leve.
+                    <br /><br />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Nome:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$nome.'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Telefone:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$telefone.'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    E-mail:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$email.'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Assunto:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$assunto.'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Mensagem:
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; text-align: justify;">
+                    '.$mensagem.'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    INFO
+                    </td>
+                    <td style="padding: 20px; font-family: Arial; color: #666; font-weight: bold; text-align: justify;">
+                    Enviado em '.date('d/m/Y').' - '.date("H:i:s").'
+                    </td>
+                    </tr>
+                    <tr>
+                    <td bgcolor="#000000" colspan="2" style="padding: 10px; font-family: Arial; color: #FFF; font-weight: bold; text-align: center;">CAMALEAO</td>
+                    </tr>
+                    </table></center>';
+                    $mailer->IsHTML(true);
+
+                    if(!$mailer->Send()) {
+                        echo "Message was not sent";
+                        echo "Mailer Error: " . $mailer->ErrorInfo; exit; 
+                    } else {
+                        echo '<script> alert("Enviado com sucesso!"); history.back("-1"); </script>';
+                    }
+                }
+            }
+        ?>
         
         
             <!-- Bootstrap core JavaScript
