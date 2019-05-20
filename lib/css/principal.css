@@ -234,11 +234,13 @@ footer p{
 
 }
 /* COL-SM */
-@media only screen and  (max-width:992px) and (min-width:767px){
-    
+@media only screen and  (max-width:992px) and (min-width:601px){
+    .datepicker-date-display{
+    	display: none!important;
+    }
 }
 /* COL-XS */
-@media only screen and  (max-width:767px){
+@media only screen and  (max-width:600px){
 
 	.destaquesfot{
 		display: none !important;

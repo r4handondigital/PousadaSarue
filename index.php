@@ -27,6 +27,17 @@
 		<!-- Custom styles for this template -->
 		<link type="text/css" href="lib/css/animate.css" rel="stylesheet">
 		<link type="text/css" href="lib/css/principal.css" rel="stylesheet">
+
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39838331-19"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-39838331-19');
+</script>
 	</head>
         <body>
 
@@ -36,7 +47,7 @@
 	        	  	 <div class="col s12">
 						<ul class="col-social right"> 
 							<li><a href="#modal1" class="waves-effect waves-light btn modal-trigger">RESERVE JÁ</a></a></li>
-							<li><a href="http://api.whatsapp.com/send?1=pt_BR&phone=5584999626315&text=Oi" target="_blank"><img src="imgs/ico-whats.png"></a></li>
+							<li><a href="http://api.whatsapp.com/send?1=pt_BR&phone=5584994182259&text=Oi" target="_blank"><img src="imgs/ico-whats.png"></a></li>
 							<li><a href="https://www.instagram.com/pousadasaruenatal" target="_blank"><img src="imgs/ico-instagram.png"></a></li>
 							<li><a href="https://www.facebook.com/pousadasaruenatal" target="_blank"><img src="imgs/ico-facebook.png"></a></li>
 						</ul>
@@ -49,7 +60,7 @@
 				      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				      <ul class="right hide-on-med-and-down">
 				        <li><a class="link" href="#quem">QUEM SOMOS</a></li>
-				        <li><a href="badges.html">ACOMODAÇÕES</a></li>
+				        <li><a class="link" href="#acomodacoes">ACOMODAÇÕES</a></li>
 				        <li><a href="#modal3" class="modal-trigger">CONHEÇA NATAL</a></a></li>
 				        <li><a href="#modal2" class="modal-trigger">CONTATO</a></a></li>
 				        <li><a class="link" href="#rodape">LOCALIZAÇÃO</a></li>
@@ -59,7 +70,7 @@
 
 				  <ul class="sidenav" id="mobile-demo">
 				    <li><a class="link" href="#quem">QUEM SOMOS</a></li>
-				        <li><a href="badges.html">ACOMODAÇÕES</a></li>
+				        <li><a class="link" href="#acomodacoes">ACOMODAÇÕES</a></li>
 				        <li><a href="#modal3" class="modal-trigger">CONHEÇA NATAL</a></a></li>
 				        <li><a href="#modal2" class="modal-trigger">CONTATO</a></a></li>
 				        <li><a class="link" href="#rodape">LOCALIZAÇÃO</a></li>
@@ -161,7 +172,7 @@ Missão: Atender nossos hóspedes de forma personalizada e com qualidade buscand
 				</div>
 			</section>
 
-			<section class="sessao-acomodacoes">
+			<section id="acomodacoes" class="sessao-acomodacoes">
 				<div class="container">
 					<div class="row">
 						<div class="col s12">
@@ -240,7 +251,7 @@ Missão: Atender nossos hóspedes de forma personalizada e com qualidade buscand
 							<p><i class="fas fa-map-marker-alt"></i> Rua Afonso Magalhães, 115, Ponta Negra, Natal/RN - CEP: 59.090-200</p>
 						</div>
 						<div class="col s12 m4 ico-cam">
-							<p><i class="fab fa-whatsapp"></i> + 55 84 99962.6315</p>
+							<p><a href="http://api.whatsapp.com/send?1=pt_BR&phone=5584994182259&text=Oi" target="_blank"><i class="fab fa-whatsapp"></i> + 55 84 99418-2259</a></p>
 							<img src="imgs/ico-camaleao.png" class="icom">
 						</div>
 					</div>
